@@ -1,6 +1,7 @@
 import click
 from uwp import Uwp
 from subsector import Subsector
+from rich import print
 
 
 @click.group()
