@@ -17,7 +17,10 @@ class UWP:
             f"{ehex(self.population)}{ehex(self.government)}{ehex(self.law_level)}-{ehex(d6())}"
         )
 
-def ehex(num: int) -> str:
+def ehex(num: int | str) -> str:
+    if isinstance(num, str):
+        return num
+
     assert(num >= 0)
 
     if num < 10:
