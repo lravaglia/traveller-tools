@@ -6,31 +6,33 @@ from enum import Enum
 
 console = Console()
 
-class Format(str, Enum):
-    TABLE = "table"
-    YAML = "yaml"
-
 class Context:
-    format: Format
+    format: str
 
-    def __init__(self, format: Format) -> None:
+    def __init__(self, format: str) -> None:
         self.format = format
 
 
 @click.group()
-@click.option("--format", type=click.Choice(Format), default=Format.TABLE)
+@click.option("--format", type=click.Choice(["table", "yaml"]), default="table", show_default=True, help="specify the output format")
 @click.pass_context
 def main(ctx, format):
+    """Select tools for the Traveller5 Referee"""
     ctx.obj = Context(format)
 
 @main.command()
-def uwp():
+@click.pass_context
+@click.option("--extended/--abbreviated", show_default=True, help="whether to generate a full UWP or an abbreviated one")
+def uwp(ctx, extended):
+    """Generate a single UWP"""
+    print(extended)
     uwp = UWP()
     console.print(uwp)
 
 @main.command()
 @click.pass_context
 def subsector(ctx):
+    """Generate a subsector"""
     subsector = Subsector()
 
     if ctx.obj.format == "table":
