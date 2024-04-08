@@ -7,15 +7,12 @@ from subsector import Subsector
 def main():
     pass
 
-@click.command()
+@main.command()
 def uwp():
     print(Uwp())
 
-@click.command()
+@main.command()
 def subsector():
     print(Subsector())
-
-main.add_command(uwp)
-main.add_command(subsector)
 
 main()
