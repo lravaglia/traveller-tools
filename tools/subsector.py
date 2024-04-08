@@ -1,8 +1,5 @@
-#!/usr/bin/env python
-from __future__ import annotations
-from random import randint
-from sys import stderr
-from uwp import Uwp
+from tools.roller import d6
+from tools.uwp import UWP
 
 
 class Subsector:
@@ -10,7 +7,7 @@ class Subsector:
     Y: int = 1
     W: int = 8
 
-    worlds = []
+    worlds: list[tuple[str, UWP]] = []
 
     def __str__(self) -> str:
         ret = ""
@@ -18,13 +15,13 @@ class Subsector:
             ret += f"{pos} {uwp}\n"
         return ret
 
-    def __init__(self) -> Subsector:
+    def __init__(self) -> None:
         x: int = self.X
         y: int = self.Y
 
         while y < self.Y + self.W:
-            if randint(1, 6) < 4:
-                self.worlds.append((f"{x:02d}{y:02d}", Uwp()))
+            if d6() < 4:
+                self.worlds.append((f"{x:02d}{y:02d}", UWP()))
 
             x += 1
 

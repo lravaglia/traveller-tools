@@ -1,6 +1,6 @@
 import click
-from uwp import Uwp
-from subsector import Subsector
+from tools.uwp import UWP
+from tools.subsector import Subsector
 from rich import print
 
 
@@ -10,7 +10,7 @@ def main():
 
 @main.command()
 def uwp():
-    print(Uwp())
+    print(UWP())
 
 @main.command()
 def subsector():

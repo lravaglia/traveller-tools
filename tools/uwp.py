@@ -1,37 +1,22 @@
-#!/usr/bin/env python
-from __future__ import annotations
-from random import randint
+from tools.roller import d6, flux, roll
 
+class UWP:
+    def __init__(self) -> None:
+        self.starport = "A"
+        [self.size, self.population] = [roll() - 2, roll() - 2]
 
-class Uwp:
-    def __init__(self: Uwp) -> Uwp:
-        [self.s, self.p] = [base(), base()]
+        self.atmosphere = max(0, self.size + flux())
+        self.hydrographics = min(10, max(0, self.atmosphere + flux()))
 
-        self.a = max(0, self.s + flux())
-        self.h = min(10, max(0, self.a + flux()))
+        self.government = max(0, self.population + flux())
+        self.law_level = max(0, self.government + flux())
 
-        self.g = max(0, self.p + flux())
-        self.l = max(0, self.g + flux())
-
-    def __str__(self: Uwp) -> str:
+    def __str__(self) -> str:
         return (
-            f"{ehex(self.s)}{ehex(self.a)}{ehex(self.h)}"
-            f"{ehex(self.p)}{ehex(self.g)}{ehex(self.l)}"
-            f"-{ehex(d(6))}"
+            f"{self.starport}{ehex(self.size)}{ehex(self.atmosphere)}{ehex(self.hydrographics)}"
+            f"{ehex(self.population)}{ehex(self.government)}{ehex(self.law_level)}"
+            f"-{ehex(d6())}"
         )
-
-
-def d(x: int) -> int:
-    return randint(1, x)
-
-
-def flux() -> int:
-    return d(6) - d(6)
-
-
-def base() -> int:
-    return d(6) + d(6) - 2
-
 
 def ehex(num: int) -> str:
     assert(num >= 0)
