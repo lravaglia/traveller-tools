@@ -31,11 +31,3 @@ class Subsector:
             if x == self.W:
                 y += 1
                 x = self.X
-
-
-def main():
-    print(Subsector())
-
-
-if __name__ == "__main__":
-    main()
