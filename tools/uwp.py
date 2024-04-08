@@ -14,8 +14,7 @@ class UWP:
     def __str__(self) -> str:
         return (
             f"{self.starport}{ehex(self.size)}{ehex(self.atmosphere)}{ehex(self.hydrographics)}"
-            f"{ehex(self.population)}{ehex(self.government)}{ehex(self.law_level)}"
-            f"-{ehex(d6())}"
+            f"{ehex(self.population)}{ehex(self.government)}{ehex(self.law_level)}-{ehex(d6())}"
         )
 
 def ehex(num: int) -> str:
