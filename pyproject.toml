@@ -1,17 +1,28 @@
-[tool.poetry]
-name = "tools"
+[project]
+name = "traveller-tools"
 version = "0.1.0"
-description = ""
-authors = ["Lorenzo Ravaglia <lorenzo.ravaglia@hope.edu>"]
+description = "Add your description here"
+authors = [
+    { name = "Lorenzo Ravaglia", email = "lorenzo@ravaglia.xyz" }
+]
+dependencies = [
+    "rich-click>=1.7.4",
+    "rich>=13.7.1",
+    "pyyaml>=6.0.1",
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-rich = "^13.7.1"
-rich-click = "^1.7.4"
-pyyaml = "^6.0.1"
-
+requires-python = ">= 3.8"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tools"]
